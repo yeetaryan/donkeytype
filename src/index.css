@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* DonkeyType Dark Theme - Deep Navy */
+    --background: 230 25% 7%;
+    --foreground: 220 20% 85%;
+
+    --card: 230 25% 10%;
+    --card-foreground: 220 20% 85%;
+
+    --popover: 230 25% 10%;
+    --popover-foreground: 220 20% 85%;
+
+    /* Cyan/Teal Accent */
+    --primary: 175 80% 50%;
+    --primary-foreground: 230 25% 7%;
+
+    --secondary: 230 20% 15%;
+    --secondary-foreground: 220 20% 75%;
+
+    --muted: 230 15% 20%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 175 80% 50%;
+    --accent-foreground: 230 25% 7%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 15% 20%;
+    --input: 230 15% 20%;
+    --ring: 175 80% 50%;
+
+    --radius: 0.5rem;
+
+    /* Typing-specific colors */
+    --text-correct: 220 20% 75%;
+    --text-incorrect: 0 70% 55%;
+    --text-extra: 0 50% 40%;
+    --text-unreached: 230 15% 30%;
+    --caret: 175 80% 50%;
+
+    /* Gradients */
+    --gradient-glow: radial-gradient(ellipse at center, hsl(175 80% 50% / 0.1) 0%, transparent 70%);
+
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(175 80% 50% / 0.2);
+
+    /* Sidebar */
+    --sidebar-background: 230 25% 8%;
+    --sidebar-foreground: 220 20% 85%;
+    --sidebar-primary: 175 80% 50%;
+    --sidebar-primary-foreground: 230 25% 7%;
+    --sidebar-accent: 230 20% 15%;
+    --sidebar-accent-foreground: 220 20% 85%;
+    --sidebar-border: 230 15% 20%;
+    --sidebar-ring: 175 80% 50%;
+  }
+
+  .dark {
+    --background: 230 25% 7%;
+    --foreground: 220 20% 85%;
+
+    --card: 230 25% 10%;
+    --card-foreground: 220 20% 85%;
+
+    --popover: 230 25% 10%;
+    --popover-foreground: 220 20% 85%;
+
+    --primary: 175 80% 50%;
+    --primary-foreground: 230 25% 7%;
+
+    --secondary: 230 20% 15%;
+    --secondary-foreground: 220 20% 75%;
+
+    --muted: 230 15% 20%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 175 80% 50%;
+    --accent-foreground: 230 25% 7%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 15% 20%;
+    --input: 230 15% 20%;
+    --ring: 175 80% 50%;
+
+    --sidebar-background: 230 25% 8%;
+    --sidebar-foreground: 220 20% 85%;
+    --sidebar-primary: 175 80% 50%;
+    --sidebar-primary-foreground: 230 25% 7%;
+    --sidebar-accent: 230 20% 15%;
+    --sidebar-accent-foreground: 220 20% 85%;
+    --sidebar-border: 230 15% 20%;
+    --sidebar-ring: 175 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono antialiased;
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .text-correct {
+    color: hsl(var(--text-correct));
+  }
+
+  .text-incorrect {
+    color: hsl(var(--text-incorrect));
+  }
+
+  .text-extra {
+    color: hsl(var(--text-extra));
+    background: hsl(var(--text-extra) / 0.2);
+  }
+
+  .text-unreached {
+    color: hsl(var(--text-unreached));
+  }
+
+  .caret-glow {
+    box-shadow: 0 0 10px hsl(var(--caret)), 0 0 20px hsl(var(--caret) / 0.5);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Caret animation */
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px hsl(var(--caret)), 0 0 20px hsl(var(--caret) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px hsl(var(--caret)), 0 0 30px hsl(var(--caret) / 0.5);
+  }
+}
+
+.caret-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.caret-pulse {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Typing focus state - hide cursor */
+.typing-active * {
+  cursor: none !important;
+}
+
+/* Smooth text transitions */
+.char-transition {
+  transition: color 0.1s ease, background-color 0.1s ease;
+}
