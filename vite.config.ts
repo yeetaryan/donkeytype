@@ -5,7 +5,10 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/", // ✅ REQUIRED for Vercel
+  base: "/",
+  
+  // Explicitly set root to current directory
+  root: process.cwd(),
 
   server: {
     host: "::",
@@ -22,4 +25,11 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  
+  // Explicitly define build input
+  build: {
+    rollupOptions: {
+      input: path.resolve(__dirname, 'index.html')
+    }
+  }
 }));
